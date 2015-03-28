@@ -6,6 +6,7 @@
 #define INPUT      BCM2835_GPIO_FSEL_INPT		///< the value to set a pin to input
 #define OUTPUT     BCM2835_GPIO_FSEL_OUTP		///< the value to set a pin to output
 
+#define INIT_EXEPTION     1
 
 class RaspberryPi
 {
@@ -62,6 +63,11 @@ public:
 /// \defgroup i2c I²C access
 /// @{
 	
+	/// \brief Starts the I²C on the Raspberry Pi
+	/// If the I²C Pins are not in use I²C is activated
+	/// \return returns true if the I²C activation was successful; returns false if not
+	bool startI2C();
+	
 	/// \brief Forces the I²C connection to run with 100 kBit/s
 	static void forceSlowI2C();
 	/// \brief Sends and receives a given amount of bytes
@@ -105,7 +111,11 @@ public:
 	
 	/// \brief Waits the given ammount of milliseconds
 	/// \param ms : the ammount of milliseconds to wait
-	static void msleep(uint32_t ms);
+	static void milliSleep(uint32_t ms);
+
+	/// \brief Waits the given ammount of microseconds
+	/// \param ms : the ammount of microseconds to wait
+	static void microSleep(uint32_t us);
 	
 /// @}
 
