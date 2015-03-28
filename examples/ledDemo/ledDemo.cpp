@@ -1,7 +1,8 @@
 /*
  * unbenannt.cxx
  * 
- * Copyright 2015 Michel Schmidt <michel@MiRapi02>
+ * Copyright 2015
+ *   Michel Schmidt <schmidtbytes@gmx.de>
  * 
  */
 
