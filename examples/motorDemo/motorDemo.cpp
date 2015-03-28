@@ -3,7 +3,7 @@
  * 
  * Copyright 2015 
  * - Stefan Enderle <enderle@qfix.de>
- * - Michel Schmidt <michel@MiRapi02>
+ * - Michel Schmidt <schmidtbytes@gmx.de>
  * 
  */
 
