@@ -36,13 +36,6 @@ RobotHAT::RobotHAT(RaspberryPi& thePi)
 	bcm2835_gpio_fsel(PWM0, BCM2835_GPIO_FSEL_ALT0);
 	bcm2835_gpio_fsel(PWM1, BCM2835_GPIO_FSEL_ALT0);
 	bcm2835_delay(10);
-
-	// Init SPI @ 1 MHz
-	bcm2835_init();
-	bcm2835_spi_begin();
-	bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_256);
-	bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);
-	bcm2835_spi_setChipSelectPolarity(CS0, HIGH);
 }
 
 
@@ -64,10 +57,6 @@ RobotHAT::~RobotHAT()
 	bcm2835_gpio_fsel(GPIO5, INPUT);
 	bcm2835_gpio_fsel(GPIO6, INPUT);
 	bcm2835_gpio_fsel(GPIO7, INPUT);
-
-
-	// close SPI
-	bcm2835_spi_end();
 }
 
 
@@ -183,8 +172,7 @@ uint16_t RobotHAT::analog(uint8_t input)
 		return 65535;
 	msg[0] |= input >> 2;
 	msg[1] = input << 6;
-	bcm2835_spi_chipSelect(CS0);
-	bcm2835_spi_transfern((char*) msg, 3);
+	pi.spi.readWrite(msg, 3, CS0);
 	return ((msg[1] & 0x0F) << 8) + msg[2];
 }
 
@@ -200,8 +188,7 @@ uint16_t RobotHAT::diffAnalog(uint8_t input)
 		return 65535;
 	msg[0] |= input >> 2;
 	msg[1] = input << 6;
-	bcm2835_spi_chipSelect(CS0);
-	bcm2835_spi_transfern((char*) msg, 3);
+	pi.spi.readWrite(msg, 3, CS0);
 	return ((msg[1] & 0x0F) << 8) + msg[2];
 }
 

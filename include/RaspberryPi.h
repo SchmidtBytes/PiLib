@@ -1,18 +1,32 @@
-#ifndef RaspberryPi_h
-#define RaspberryPi_h 
+// File         : RaspberryPi.h
+// Version      : 1.0.0
+//
+// Author       : Michel Schmidt
+// E-mail       : schmidtbytes@gmx.de
+// Copyright    : (C) SchmidtBytes 2015
+//
+// Last Changes : 22.02.2015
+
+#ifndef RASPBERRY_PI_LIB_H
+#define RASPBERRY_PI_LIB_H
 
 #include <bcm2835.h>
+#include "I2C.h"
+#include "SPI.h"
 
 #define INPUT      BCM2835_GPIO_FSEL_INPT		///< the value to set a pin to input
 #define OUTPUT     BCM2835_GPIO_FSEL_OUTP		///< the value to set a pin to output
 
-#define INIT_EXEPTION     1
 
 class RaspberryPi
 {
-	private:
+private:
 	
 	static uint8_t active_i2c_client;			///< the currently used i2c client
+	
+public:
+	SPI spi;
+	I2C i2c;
 	
 /// \defgroup init
 /// @{
@@ -63,11 +77,6 @@ public:
 /// \defgroup i2c I²C access
 /// @{
 	
-	/// \brief Starts the I²C on the Raspberry Pi
-	/// If the I²C Pins are not in use I²C is activated
-	/// \return returns true if the I²C activation was successful; returns false if not
-	bool startI2C();
-	
 	/// \brief Forces the I²C connection to run with 100 kBit/s
 	static void forceSlowI2C();
 	/// \brief Sends and receives a given amount of bytes
@@ -112,9 +121,8 @@ public:
 	/// \brief Waits the given ammount of milliseconds
 	/// \param ms : the ammount of milliseconds to wait
 	static void milliSleep(uint32_t ms);
-
 	/// \brief Waits the given ammount of microseconds
-	/// \param ms : the ammount of microseconds to wait
+	/// \param us : the ammount of microseconds to wait
 	static void microSleep(uint32_t us);
 	
 /// @}
@@ -128,5 +136,5 @@ public:
 
 
 
-#endif
+#endif // RASPBERRY_PI_LIB_H
 
