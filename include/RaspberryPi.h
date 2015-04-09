@@ -1,7 +1,18 @@
-#ifndef RaspberryPi_h
-#define RaspberryPi_h 
+// File         : RaspberryPi.h
+// Version      : 1.0.0
+//
+// Author       : Michel Schmidt
+// E-mail       : schmidtbytes@gmx.de
+// Copyright    : (C) SchmidtBytes 2015
+//
+// Last Changes : 22.02.2015
+
+#ifndef RASPBERRY_PI_LIB_H
+#define RASPBERRY_PI_LIB_H
 
 #include <bcm2835.h>
+#include "I2C.h"
+#include "SPI.h"
 
 #define INPUT      BCM2835_GPIO_FSEL_INPT		///< the value to set a pin to input
 #define OUTPUT     BCM2835_GPIO_FSEL_OUTP		///< the value to set a pin to output
@@ -9,9 +20,13 @@
 
 class RaspberryPi
 {
-	private:
+private:
 	
 	static uint8_t active_i2c_client;			///< the currently used i2c client
+	
+public:
+	SPI spi;
+	I2C i2c;
 	
 /// \defgroup init
 /// @{
@@ -105,7 +120,10 @@ public:
 	
 	/// \brief Waits the given ammount of milliseconds
 	/// \param ms : the ammount of milliseconds to wait
-	static void msleep(uint32_t ms);
+	static void milliSleep(uint32_t ms);
+	/// \brief Waits the given ammount of microseconds
+	/// \param us : the ammount of microseconds to wait
+	static void microSleep(uint32_t us);
 	
 /// @}
 
@@ -118,5 +136,5 @@ public:
 
 
 
-#endif
+#endif // RASPBERRY_PI_LIB_H
 

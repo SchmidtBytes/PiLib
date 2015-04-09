@@ -1,5 +1,5 @@
 #include "RaspberryPi.h"
-
+#include <unistd.h>
 
 #define SPI_CS1        RPI_BPLUS_GPIO_J8_26			///< the chip select 1 pin of the SPI
 
@@ -16,9 +16,6 @@ RaspberryPi::RaspberryPi()
 	// Init GPIO module
 	if (!bcm2835_init())  {  /* TODO: ERROR */ }
 
-	// Init I2C @ 400 KHz
-	bcm2835_i2c_begin();
-	bcm2835_i2c_set_baudrate(400000);
 }
 
 
@@ -26,9 +23,6 @@ RaspberryPi::RaspberryPi()
 
 RaspberryPi::~RaspberryPi()
 {
-        // close i2c
-	bcm2835_i2c_end();
-
 	// Deinit GPIO module
 	bcm2835_close();
 }
@@ -132,8 +126,13 @@ void RaspberryPi::rwSPI(uint8_t* send_data, uint8_t* rec_data, uint32_t data_len
 	bcm2835_spi_transfernb ((char*) send_data, (char*) rec_data, data_length);
 }
 
-void RaspberryPi::msleep(uint32_t ms)
+void RaspberryPi::milliSleep(uint32_t ms)
 {
-	bcm2835_delay(ms);
+	usleep(1000 * ms);
+}
+
+void RaspberryPi::microSleep(uint32_t us)
+{
+	usleep(us);
 }
 

@@ -1,4 +1,4 @@
-// File         : BotHat.hpp
+// File         : BotHat.h
 // Version      : 1.0.0
 //
 // Author       : Michel Schmidt
@@ -14,8 +14,8 @@
 /// \date 22.Feb.2015
 /// \author Michel Schmidt (SchmidtBytes@gmx.de)
 
-#ifndef RobotHAT_h
-#define RobotHAT_h 
+#ifndef ROBOT_HAT_LIB_H
+#define ROBOT_HAT_LIB_H 
 
 #include "RaspberryPi.h"
 
@@ -31,8 +31,6 @@
 #define GPIO5      RPI_BPLUS_GPIO_J8_18			///< the GPIO6 pin
 #define GPIO6      RPI_BPLUS_GPIO_J8_22			///< the GPIO7 pin
 #define GPIO7      RPI_BPLUS_GPIO_J8_07			///< the GPIO8 pin
-#define CS0        RPI_BPLUS_GPIO_J8_24			///< the chip select 0 pin of the SPI
-#define CS1        RPI_BPLUS_GPIO_J8_26			///< the chip select 1 pin of the SPI
 #define MOT1A      RPI_BPLUS_GPIO_J8_37			///< 1st direction pin for motor A
 #define MOT2A      RPI_BPLUS_GPIO_J8_38			///< 2nd direction pin for motor A
 #define MOT1B      RPI_BPLUS_GPIO_J8_35			///< 1st direction pin for motor B
@@ -163,4 +161,4 @@ public:
 
 };
 
-#endif // BOT_HAT_HPP
+#endif // ROBOT_HAT_LIB_H
