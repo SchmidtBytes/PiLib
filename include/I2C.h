@@ -5,7 +5,7 @@
 // E-mail       : schmidtbytes@gmx.de
 // Copyright    : (C) SchmidtBytes 2015
 //
-// Last Changes : 14.04.2015
+// Last Changes : 11.04.2015
 
 #ifndef I2C_LIB_H
 #define I2C_Lib_H 

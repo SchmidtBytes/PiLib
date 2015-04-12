@@ -23,6 +23,7 @@ RaspberryPi::RaspberryPi()
 
 RaspberryPi::~RaspberryPi()
 {
+	spi.stop();
 	// Deinit GPIO module
 	bcm2835_close();
 }
